@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  express:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: express-app
+    ports:
+      - "3000:3000"
+
+  nginx:
+    build:
+      context: .
+      dockerfile: nginx.dockerfile
+    container_name: custom-nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - express 
